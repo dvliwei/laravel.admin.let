@@ -19,61 +19,95 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">监控参数</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>监控条目</th>
-                                    <th>参数</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>php版本</td>
-                                    <td>{{ PHP_VERSION}}</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>操作系统</td>
-                                    <td>{{ PHP_OS}}</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>ZEND版本</td>
-                                    <td>{{ zend_version()}}</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>服务器端信息</td>
-                                    <td>{{$_SERVER ['SERVER_SOFTWARE']}}</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>服务器端时间</td>
-                                    <td>{{date('Y-m-d H:i:s')}}</td>
-                                </tr>
 
-                                <tr>
-                                    <td>6</td>
-                                    <td>系统时区使用</td>
-                                    <td>{{env('ORDER_TIME_ZONE') }}  ({{env('ORDER_TIME_ZONE_COUNTRY')}})</td>
-                                </tr>
-                                </tbody>
-                            </table>
+        <div class="container-fluid">
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas  fa-database"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">php版本</span>
+                            <span class="info-box-number">{{ PHP_VERSION}}</span>
                         </div>
+                        <!-- /.info-box-content -->
                     </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-desktop"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">操作系统</span>
+                            <span class="info-box-number">{{PHP_OS}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-github"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">ZEND版本	</span>
+                            <span class="info-box-number">{{zend_version()}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-linux" aria-hidden="true"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">服务器端信息</span>
+                            <span class="info-box-number">{{$_SERVER ['SERVER_SOFTWARE']}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-clock-o"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">服务器端时间</span>
+                            <span class="info-box-number">{{date('Y-m-d H:i:s')}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3 ">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-map-marker"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">系统使用时区</span>
+                            <span class="info-box-number">{{env('ORDER_TIME_ZONE') }}  ({{env('ORDER_TIME_ZONE_COUNTRY')}})</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div><!--/. container-fluid -->
     </section>
 @endsection
