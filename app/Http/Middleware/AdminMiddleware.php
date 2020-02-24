@@ -20,7 +20,8 @@ class AdminMiddleware
     {
 
         if(empty(Auth::user())){
-            return redirect("/logout");
+            Auth::logout();
+            return redirect("/login");
         }
 
         if( Auth::user()->id===1){

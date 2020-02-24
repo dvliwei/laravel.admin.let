@@ -166,7 +166,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/admin/log-view" class="nav-link {{ active_class(Active::checkUriPattern('admin/log-view'), 'active') }}">
+                                    <a href="/log-viewer" class="nav-link {{ active_class(Active::checkUriPattern('log-viewer'), 'active') }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>系统日志</p>
                                     </a>

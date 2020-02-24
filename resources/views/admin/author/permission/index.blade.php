@@ -87,7 +87,7 @@
                                     </thead>
                                     <tbody class="text-left">
                                     @foreach($datas as $data)
-                                        <tr  class="success">
+                                        <tr  class="bg-success disabled color-palette">
                                             <td>{{$data["id"]}}</td>
                                             <td>{{$data["name"]}}</td>
                                             <td>{{$data["route_name"]}}</td>
@@ -96,38 +96,38 @@
                                         </tr>
                                         @if(!empty($data["child"]))
                                             @foreach($data["child"] as $child)
-                                                <tr class="active">
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$child["id"]}}</td>
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$child["name"]}}</td>
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$child["route_name"]}}</td>
-                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{$child["comment"]}}</td>
-                                                    <td class=" text-center"><a href="javascript:void(0);" class="btn  btn-default w-40" onclick="EditePermission({{$child["id"]}})">编辑</a> </td>
+                                                <tr class="bg-info disabled color-palette">
+                                                    <td  style="text-indent:2em;">{{$child["id"]}}</td>
+                                                    <td  style="text-indent:2em;">{{$child["name"]}}</td>
+                                                    <td  style="text-indent:2em;">{{$child["route_name"]}}</td>
+                                                    <td  style="text-indent:2em;">{{$child["comment"]}}</td>
+                                                    <td  class=" text-center"><a href="javascript:void(0);" class="btn  btn-default w-40" onclick="EditePermission({{$child["id"]}})">编辑</a> </td>
                                                 </tr>
                                                 @if(!empty($child["child"]))
                                                     @foreach($child["child"] as $child1)
-                                                        <tr class="warning">
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child1["id"]}}</td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child1["name"]}}</td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child1["route_name"]}}</td>
-                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child1["comment"]}}</td>
+                                                        <tr class="bg-primary disabled color-palette">
+                                                            <td style="text-indent:4em;">{{$child1["id"]}}</td>
+                                                            <td style="text-indent:4em;">{{$child1["name"]}}</td>
+                                                            <td style="text-indent:4em;">{{$child1["route_name"]}}</td>
+                                                            <td style="text-indent:4em;">{{$child1["comment"]}}</td>
                                                             <td class=" text-center"><a href="javascript:void(0);" class="btn  btn-default w-40" onclick="EditePermission({{$child1["id"]}})">编辑</a> </td>
                                                         </tr>
                                                         @if(!empty($child1["child"]))
                                                             @foreach($child1["child"] as $child2)
-                                                                <tr class="danger">
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child2["id"]}}</td>
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child2["name"]}}</td>
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child2["route_name"]}}</td>
-                                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child2["comment"]}}</td>
+                                                                <tr class="bg-danger disabled color-palette">
+                                                                    <td style="text-indent:6em;">{{$child2["id"]}}</td>
+                                                                    <td style="text-indent:6em;">{{$child2["name"]}}</td>
+                                                                    <td style="text-indent:6em;">{{$child2["route_name"]}}</td>
+                                                                    <td style="text-indent:6em;">{{$child2["comment"]}}</td>
                                                                     <td class=" text-center"><a href="javascript:void(0);" class="btn  btn-default w-40" onclick="EditePermission({{$child2["id"]}})">编辑</a> </td>
                                                                 </tr>
                                                                 @if(!empty($child2["child"]))
                                                                     @foreach($child2["child"] as $child3)
-                                                                        <tr class="danger">
-                                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child3["id"]}}</td>
-                                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child3["name"]}}</td>
-                                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child3["route_name"]}}</td>
-                                                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child3["comment"]}}</td>
+                                                                        <tr class="bg-light disabled color-palette">
+                                                                            <td style="text-indent:8em;">{{$child3["id"]}}</td>
+                                                                            <td style="text-indent:8em;">{{$child3["name"]}}</td>
+                                                                            <td style="text-indent:8em;">{{$child3["route_name"]}}</td>
+                                                                            <td style="text-indent:8em;">{{$child3["comment"]}}</td>
                                                                             <td class=" text-center"><a href="javascript:void(0);"  class="btn  btn-default w-40" onclick="EditePermission({{$child3["id"]}})">编辑</a> </td>
                                                                         </tr>
                                                                     @endforeach

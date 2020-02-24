@@ -4,7 +4,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     @if (!empty(session('status')) && session('status')==1)
         <div class=" alert alert-success alert-dismissible Huialert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -33,7 +32,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </div>
-
 
 
     <div class="Hui-article">
@@ -92,7 +90,6 @@
         </div>
         <!--/权限树 -->
 
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -103,13 +100,13 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-bordered text-nowrap">
+                                <table class="table table-bordered text-nowrap text-center">
                                     <thead>
                                     <tr>
                                         <th style="width: 10px">id</th>
                                         <th >角色名称</th>
                                         <th>角色介绍</th>
-                                        <th>操作</th>
+                                        <th style="width: 40px;">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -137,129 +134,132 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
+
+
     </div>
 @endsection
 
 
 @section('after-scripts')
-<script type="text/javascript" src="{{ asset('ztree/js/jquery.ztree.core.js') }}"></script>
-<script type="text/javascript" src="{{ asset('ztree/js/jquery.ztree.excheck.js') }}"></script>
-<script>
-var setting = {
-    check: {
-        enable: true
-    },
-    view: {
-        dblClickExpand: false,
-        showLine: false,
-        selectedMulti: false
-    },
-    data: {
-        simpleData: {
-            enable: true,
-            idKey: "id",
-            pIdKey: "pId",
-            rootPId: ""
+    <script type="text/javascript" src="{{ asset('ztree/js/jquery.ztree.core.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ztree/js/jquery.ztree.excheck.js') }}"></script>
+
+    <script>
+        var setting = {
+            check: {
+                enable: true
+            },
+            view: {
+                dblClickExpand: false,
+                showLine: false,
+                selectedMulti: false
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: ""
+                }
+            },
+            callback: {
+                onCheck: onCheck
+            }
+        };
+        function collapseAll(zTreeId){
+            var treeId = zTreeId;
+            var zTree = $.fn.zTree.getZTreeObj(treeId);
+            zTree.expandAll(false);
         }
-    },
-    callback: {
-        onCheck: onCheck
-    }
-};
-function collapseAll(zTreeId){
-    var treeId = zTreeId;
-    var zTree = $.fn.zTree.getZTreeObj(treeId);
-    zTree.expandAll(false);
-}
-function onCheck(e, treeId, treeNode) {
-    var zTree = $.fn.zTree.getZTreeObj("menu-tree"),
-        nodes=zTree.getCheckedNodes(true),
-        v="";
-    for(var i=0;i<nodes.length;i++){
-        v+=nodes[i].name + ",";
-        //console.log(nodes[i].id); //获取选中节点的值
-    }
-    console.log("xxxxx");
-    //zTree.expandNode(nodes);
-}
-function expandAll(nodes) {
-    var zTree = $.fn.zTree.getZTreeObj("menu-tree");
-    zTree.expandAll(false);
-    for(var i =0; i<nodes.length; i++){
-
-        if(nodes[i].open==true){
-            //使用id作为完全匹配
-            var node=zTree.getNodeByParam('id',nodes[i].id);
-            zTree.expandNode(node, true, false, true);
+        function onCheck(e, treeId, treeNode) {
+            var zTree = $.fn.zTree.getZTreeObj("menu-tree"),
+                nodes=zTree.getCheckedNodes(true),
+                v="";
+            for(var i=0;i<nodes.length;i++){
+                v+=nodes[i].name + ",";
+                //console.log(nodes[i].id); //获取选中节点的值
+            }
+            console.log("xxxxx");
+            //zTree.expandNode(nodes);
         }
-    }
+        function expandAll(nodes) {
+            var zTree = $.fn.zTree.getZTreeObj("menu-tree");
+            zTree.expandAll(false);
+            for(var i =0; i<nodes.length; i++){
 
-}
+                if(nodes[i].open==true){
+                    //使用id作为完全匹配
+                    var node=zTree.getNodeByParam('id',nodes[i].id);
+                    zTree.expandNode(node, true, false, true);
+                }
+            }
 
-var user_id;
-function set_Permission(role_id) {
-    $('#per_role_id').val(role_id);
-    var get_nodes = "/admin/author/role/prmission/" + role_id;
-    $.get(get_nodes, {}, function(data) {
-        var zNodes = data;
-        console.log(zNodes);
-        $.fn.zTree.init($("#menu-tree"), setting, zNodes);
-        expandAll(data);
-        $('#modal-tree-role').modal('show');
-        //collapseAll('menu-tree');
-    }, 'JSON');
-
-}
-function saveRoleMenu(){
-    var role_id = $('#per_role_id').val();
-    var zTree = $.fn.zTree.getZTreeObj("menu-tree");
-    nodes = zTree.getCheckedNodes(true);
-    var node_ids;
-    for (var i = 0; i < nodes.length; i++) {
-        node_ids += nodes[i].id + ','; //获取选中节点的值
-    }
-    node_ids = node_ids.replace('undefined', '');
-    var post_save_adminmenu = "/admin/author/role/add_role_prmission";
-    $.post(post_save_adminmenu, {
-        role_id: role_id,
-        node_ids: node_ids,
-        _token:"{{csrf_token()}}"
-    }, function(data) {
-        if (data.status == 'success') {
-            $('#modal-tree-role').modal('hide');
-            $("#notic").text(data.message);
-            $("#notic").removeClass("hidden");
-            history.go(0);//刷新当前页面
         }
-    }, 'JSON');
-}
-var role_id;
-function showModel(role_id){
-    $("#modal-tree-role").modal("show")
-}
-</script>
+
+        var user_id;
+        function set_Permission(role_id) {
+            $('#per_role_id').val(role_id);
+            var get_nodes = "/admin/author/role/prmission/" + role_id;
+            $.get(get_nodes, {}, function(data) {
+                var zNodes = data;
+                console.log(zNodes);
+                $.fn.zTree.init($("#menu-tree"), setting, zNodes);
+                expandAll(data);
+                $('#modal-tree-role').modal('show');
+                //collapseAll('menu-tree');
+            }, 'JSON');
+
+        }
+        function saveRoleMenu(){
+            var role_id = $('#per_role_id').val();
+            var zTree = $.fn.zTree.getZTreeObj("menu-tree");
+            nodes = zTree.getCheckedNodes(true);
+            var node_ids;
+            for (var i = 0; i < nodes.length; i++) {
+                node_ids += nodes[i].id + ','; //获取选中节点的值
+            }
+            node_ids = node_ids.replace('undefined', '');
+            var post_save_adminmenu = "/admin/author/role/add_role_prmission";
+            $.post(post_save_adminmenu, {
+                role_id: role_id,
+                node_ids: node_ids,
+                _token:"{{csrf_token()}}"
+            }, function(data) {
+                if (data.status == 'success') {
+                    $('#modal-tree-role').modal('hide');
+                    $("#notic").text(data.message);
+                    $("#notic").removeClass("hidden");
+                    history.go(0);//刷新当前页面
+                }
+            }, 'JSON');
+        }
+        var role_id;
+        function showModel(role_id){
+            $("#modal-tree-role").modal("show")
+        }
+    </script>
 
 
 
 
-<script>
-    $('#modal-role').on('hidden.bs.modal', function () {
-        $("#modal-role input").val("");
-        $("#modal-role textarea").text('');
-        $("#modal-role textarea").val("");
-    });
-    var ShowRole = function () {
-        $("#modal-role").modal("show");
-    }
-    var id;
-    var EditeRole =function(id){
-        var getUrl = "/admin/author/role/edite/"+id;
-        $.get(getUrl, {},function(data,status){
-            $("#modal-role #role_id").val(data.id);
-            $("#modal-role #role_name").val(data.role_name);
-            $("#modal-role #role_comment").val(data.comment);
-            ShowRole();
-        },'JSON');
-    }
-</script>
+    <script>
+        $('#modal-role').on('hidden.bs.modal', function () {
+            $("#modal-role input").val("");
+            $("#modal-role textarea").text('');
+            $("#modal-role textarea").val("");
+        });
+        var ShowRole = function () {
+            $("#modal-role").modal("show");
+        }
+        var id;
+        var EditeRole =function(id){
+            var getUrl = "/admin/author/role/edite/"+id;
+            $.get(getUrl, {},function(data,status){
+                $("#modal-role #role_id").val(data.id);
+                $("#modal-role #role_name").val(data.role_name);
+                $("#modal-role #role_comment").val(data.comment);
+                ShowRole();
+            },'JSON');
+        }
+    </script>
 @stop
