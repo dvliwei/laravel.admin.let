@@ -14,12 +14,18 @@
         <link rel="stylesheet" href="{{asset('adminle/dist/css/adminlte.min.css')}}">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('adminle/ico/css/font-awesome.min.css')}}">
+        <style>
+            footer{  padding:26% 0 30px 0; width:100%}
+
+        </style>
     </head>
     <body class="hold-transition lockscreen">
         <div class="flex-center position-ref full-height">
 
             <div class="lockscreen-wrapper">
                 <div class="lockscreen-logo">
+                    <h1><i class="fa fa-optin-monster"></i></h1>
                     <a href=""><b>Admin</b>LTE</a>
                 </div>
 
@@ -36,12 +42,12 @@
                     @endif
                 </div>
             </div>
-
-            <div class="lockscreen-footer text-center">
-                Copyright &copy; 2014-2019 <b><a href="https://www.jianshu.com/u/ca4dea526a4d" class="text-black">php.we.li@gmail.com</a></b><br>
-                All rights reserved
-            </div>
         </div>
+
+        <footer class="lockscreen-footer text-center">
+            Copyright &copy; 2014-2019 <b><a href="https://www.jianshu.com/u/ca4dea526a4d" class="text-black">php.we.li@gmail.com</a></b><br>
+            All rights reserved
+        </footer>
 
 
         <!-- jQuery -->
