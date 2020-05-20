@@ -73,7 +73,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/home" class="brand-link">
-            <h1><i class="fa fa-optin-monster"></i></h1><span class="brand-text font-weight-light ">{{ config('app.name', 'Laravel') }}</span>
+            <h1><i class="fa fa-optin-monster" style="opacity: .8"></i></h1><span class="brand-text font-weight-light ">{{ config('app.name', 'Laravel') }}</span>
         </a>
 
         <!-- Sidebar -->

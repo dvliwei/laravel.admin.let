@@ -2,7 +2,8 @@
 
 ### 部署文档
 ```text
-git clone -b develop https://github.com/onemena/quora-arab.git
+git clone -b master https://github.com/dvliwei/laravel.admin.let.git
+
  
 chmod -R 777 storage
  

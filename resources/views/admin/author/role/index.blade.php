@@ -214,7 +214,7 @@
             var role_id = $('#per_role_id').val();
             var zTree = $.fn.zTree.getZTreeObj("menu-tree");
             nodes = zTree.getCheckedNodes(true);
-            var node_ids;
+            node_ids="";
             for (var i = 0; i < nodes.length; i++) {
                 node_ids += nodes[i].id + ','; //获取选中节点的值
             }
