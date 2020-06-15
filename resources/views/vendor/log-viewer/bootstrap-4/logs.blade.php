@@ -1,10 +1,22 @@
-@extends('log-viewer::bootstrap-4._master')
 
+@extends('layouts.admin')
 <?php /** @var  Illuminate\Pagination\LengthAwarePaginator  $rows */ ?>
 
 @section('content')
-    <div class="page-header mb-4">
-        <h1>Logs</h1>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>列表</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/home">首页</a></li>
+                        <li class="breadcrumb-item active">日志列表</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </div>
 
     <div class="table-responsive">

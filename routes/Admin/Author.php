@@ -9,14 +9,14 @@
 
 Route::group([
     'prefix'     => 'author',
-    'as'         => 'author',
+    'as'         => 'author.',
     'middleware'=>'admin.auth',
 ], function () {
 
     /*角色*/
     Route::group([
         'prefix'     => 'role',
-        'as'         => 'role',
+        'as'         => 'role.',
         //'middleware'=>'admin.auth',
     ], function () {
         Route::any('/', 'Author\RoleController@actionIndex')->name('author_role');
@@ -33,10 +33,9 @@ Route::group([
     /*用户*/
     Route::group([
         'prefix'     => 'user',
-        'as'         => 'user',
-        'middleware'=>'admin.auth',
+        'as'         => 'user.',
     ], function () {
-        Route::any('/', 'Author\UserController@actionIndex')->name('author_role');
+        Route::any('/', 'Author\UserController@actionIndex')->name('author_user');
         Route::any('/emailCheck', 'Author\UserController@actionEmailCheck')->name('user_emailCheck');
         Route::any('/save_user', 'Author\UserController@actionSaveUser')->name('author_save_user');
         Route::any('/edite_password', 'Author\UserController@actionEditerUserPassword')->name('author_user_edite_password');
@@ -48,7 +47,7 @@ Route::group([
     /*权限*/
     Route::group([
         'prefix'     => 'permission',
-        'as'         => 'permission',
+        'as'         => 'permission.',
         //'middleware'=>'admin.auth',
     ], function () {
         Route::any('/', 'Author\PermissionController@actionIndex')->name('AUTHOR_PERMISSION');

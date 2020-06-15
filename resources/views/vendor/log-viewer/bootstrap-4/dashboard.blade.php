@@ -1,9 +1,23 @@
-@extends('log-viewer::bootstrap-4._master')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="page-header mb-4">
-        <h1>Dashboard</h1>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>统计</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/home">首页</a></li>
+                        <li class="breadcrumb-item active">日志管理</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
     </div>
+
+
 
     <div class="row">
         <div class="col-md-6 col-lg-3">
@@ -37,6 +51,7 @@
 @endsection
 
 @section('scripts')
+
     <script>
         $(function() {
             new Chart(document.getElementById("stats-doughnut-chart"), {

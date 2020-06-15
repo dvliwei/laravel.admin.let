@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Modules\Permission\Repositories\PermissionRepository;
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+use Log;
 class AdminMiddleware
 {
     /**
@@ -23,12 +23,14 @@ class AdminMiddleware
             Auth::logout();
             return redirect("/login");
         }
-
+        $roleName = $request->route()->getName();
+        $role_id = Auth::user()->role_id;
+        $adminId=Auth::user()->id;
         if( Auth::user()->id===1){
+            Log::Info($roleName,["user_id"=>$adminId,"role_id"=>$role_id,"ip"=>getUserActionIp()]);
             return $next($request);
         }else{
-            $role_id = Auth::user()->role_id;
-            $roleName = $request->route()->getName();
+            Log::Info($roleName,["user_id"=>$adminId,"role_id"=>$role_id,"ip"=>getUserActionIp()]);
             $names = explode('.',$roleName);
             $permis = new PermissionRepository();
             $permisModel = $permis->getPerByCode(end($names));
