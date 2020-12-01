@@ -420,8 +420,10 @@
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="{{asset('adminle/dist/js/demo.js')}}"></script>
 
+<script src="{{asset('adminle/dist/js/demo.js')}}"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="{{asset('adminle/dist/js/app.js')}}"></script>
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
 <script src="{{asset('adminle/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
@@ -432,6 +434,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
 <!--/_footer /作为公共模版分离出去-->
 @yield('modals')
 @yield('scripts')
