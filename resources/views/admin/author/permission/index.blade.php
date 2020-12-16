@@ -4,17 +4,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if (!empty(session('status')) && session('status')==1)
-        <div class=" alert alert-success alert-dismissible Huialert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{session('msg')}}
-        </div>
-    @elseif(!empty(session('status')) && session('status')!=1)
-        <div class="Huialert alert alert-danger alert-dismissible Huialert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{session('msg')}}
-        </div>
-    @endif
 
     <div class="content-header">
         <div class="container-fluid">

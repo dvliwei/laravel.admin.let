@@ -11,16 +11,34 @@
     <link rel="stylesheet" href="{{asset('adminle/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('adminle/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('adminle/dist/css/adminlte.min.css')}}">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link href="{{asset('Hui-iconfont/1.0.8/iconfont.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="{{ asset('ztree/zTreeStyle/zTreeStyle.css') }}" />
 
+
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="{{asset('adminle/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminle/plugins/daterangepicker/daterangepicker.css')}}">
+
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="{{asset('adminle/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="{{asset('adminle/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('adminle/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminle/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/admin.css')}}">
     <link rel="stylesheet" href="{{asset('adminle/ico/css/font-awesome.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('adminle/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminle/plugins/toastr/toastr.min.css')}}">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('adminle/dist/css/adminlte.min.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <style>
 
@@ -434,6 +452,13 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="{{asset('adminle/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+<script src="{{asset('adminle/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('adminle/plugins/toastr/toastr.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('admin/admin.js')}}"></script>
+
 
 <!--/_footer /作为公共模版分离出去-->
 @yield('modals')
@@ -444,6 +469,25 @@
         localHostDateTime();
         hiddenHuiAlert();
     });
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+    @if (!empty(session('status')) && session('status')==1)
+    Toast.fire({
+        type: 'success',
+        title: "{{session('msg')}}"
+    })
+    @elseif(!empty(session('status')) && session('status')!=1)
+    Toast.fire({
+        type: 'error',
+        title: "{{session('msg')}}"
+    })
+    @endif
 </script>
 
 <!--请在下方写此页面业务相关的脚本-->
